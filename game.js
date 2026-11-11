@@ -157,6 +157,7 @@
   let helpReturn = 'running';
   let minimapDragging = false;
   let lastAlert = -999;
+  let frozen = false;
 
   let effects = { tracers: [], particles: [], pings: [], floaters: [] };
   let stats = [makeStats(), makeStats()];
@@ -325,6 +326,7 @@
     lastActionSig = '';
     helpReturn = 'running';
     lastAlert = -999;
+    frozen = false;
     toastsEl.innerHTML = '';
 
     for (const k in groups) delete groups[k];
@@ -2900,7 +2902,7 @@
     lastTime = now;
     visualTime += dt;
 
-    if (state === 'running') {
+    if (state === 'running' && !frozen) {
       simulate(dt);
       updateCamera(dt);
     }
@@ -2930,6 +2932,7 @@
     get ai() { return ai; },
     get stats() { return stats; },
     get camera() { return { ...camera }; },
+    get effects() { return effects; },
     step(seconds = 1, dt = 0.05) {
       if (state !== 'running') return;
       const n = Math.max(1, Math.round(seconds / dt));
@@ -2964,6 +2967,8 @@
       camera.y = y - view.h / 2;
       clampCamera();
     },
+    freeze() { frozen = true; },
+    thaw() { frozen = false; },
     spawn(kind, team, x, y) {
       if (!DEFS[kind]) return null;
       return createEntity(kind, team, x, y).id;
