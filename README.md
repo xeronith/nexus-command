@@ -1,8 +1,17 @@
 # NEXUS COMMAND
 
-A small, self-contained real-time strategy game prototype inspired by StarCraft. No build step, no dependencies, no assets — just canvas, HTML, and CSS.
+A small, self-contained real-time strategy game prototype inspired by StarCraft. No build step, no dependencies, no game assets — just canvas, HTML, and CSS.
 
 **Status:** playable prototype · **Dependencies:** none
+
+## Screenshots
+
+![Troopers defend the mineral line](docs/screenshots/battle.png)
+*First contact on the mineral line.*
+
+| Base economy | Title screen |
+| :---: | :---: |
+| ![Harvesters and base](docs/screenshots/base.png) | ![Nexus Command title screen](docs/screenshots/menu.png) |
 
 ## Run it
 
@@ -68,6 +77,8 @@ nexus-command/
 ├── index.html   HUD, overlay, canvas
 ├── style.css    sci-fi interface, responsive layout
 ├── game.js      simulation, AI, rendering, input, audio-free effects
+├── docs/
+│   └── screenshots/   README gameplay screenshots
 └── README.md
 ```
 
@@ -90,7 +101,10 @@ __NEXUS__.state
 __NEXUS__.gameTime
 __NEXUS__.minerals         // [player, enemy]
 __NEXUS__.entities
+__NEXUS__.effects
 __NEXUS__.step(5)          // fast-forward 5 simulated seconds
+__NEXUS__.freeze()         // pause simulation while keeping the HUD live
+__NEXUS__.thaw()
 __NEXUS__.select('worker')
 __NEXUS__.centerOn(330, 1320)
 ```
