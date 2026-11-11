@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>NEXUS COMMAND — RTS Prototype</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305080f'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%234fe3ff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%234fe3ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game" aria-label="Real-time strategy game world"></canvas>
+
+  <div id="hud">
+    <header id="topbar">
+      <div class="brand">
+        <span class="mark"></span>
+        <div class="brand-text">
+          NEXUS COMMAND
+          <span>RTS PROTOTYPE // 01</span>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-label">MINERALS</span>
+          <span class="stat-value mineral">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 14 6l-6 8.5L2 6z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M2 6h12M8 1.5V14.5" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/></svg>
+            <b id="statMinerals">0</b>
+          </span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">ARMY</span>
+          <span class="stat-value" id="statArmy">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">HARVESTERS</span>
+          <span class="stat-value" id="statWorkers">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">MISSION TIME</span>
+          <span class="stat-value" id="statTime">00:00</span>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn" id="btnHelp" title="Controls (H)" tabindex="-1">?</button>
+        <button class="icon-btn" id="btnPause" title="Pause (P)" tabindex="-1">Ⅱ</button>
+      </div>
+    </header>
+
+    <div id="bottombar">
+      <section id="minimapPanel" class="panel">
+        <canvas id="minimap"></canvas>
+        <div class="mm-caption"><span>TACTICAL FEED</span><span id="mmSector">SECTOR 07</span></div>
+      </section>
+
+      <section id="infoPanel" class="panel">
+        <div class="panel-head"><span>SELECTION</span><span id="infoTag">—</span></div>
+        <div id="infoContent" class="info-content"></div>
+      </section>
+
+      <section id="commandPanel" class="panel">
+        <div class="panel-head"><span>COMMAND</span><span id="cmdHint">STANDBY</span></div>
+        <div id="commandGrid" class="command-grid"></div>
+      </section>
+    </div>
+  </div>
+
+  <div id="toasts"></div>
+  <div id="overlay"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
